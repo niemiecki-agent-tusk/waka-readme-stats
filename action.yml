@@ -149,8 +149,9 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://wakareadmestats/waka-readme-stats:master'
+  image: 'docker://ghcr.io/niemiecki-agent-tusk/waka-readme-stats:master'
 
 branding:
   icon: 'activity'
   color: 'orange'
+
