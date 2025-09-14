@@ -19,17 +19,18 @@ jobs:
       - name: Set up Docker Buildx 🐋
         uses: docker/setup-buildx-action@v2
 
-      - name: Log in to the container registry 🚪
+      - name: Log in to GitHub Container Registry 🚪
         uses: docker/login-action@v2
         with:
-          username: wakareadmestats
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata (tags, labels) for Docker 🏋️
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: wakareadmestats/waka-readme-stats
+          images: ghcr.io/niemiecki-agent-tusk/waka-readme-stats
           tags: |
             type=ref,event=branch
             type=ref,event=pr
