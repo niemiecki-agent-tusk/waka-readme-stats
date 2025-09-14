@@ -114,7 +114,7 @@ async def make_commit_day_time_list(time_zone: str, repositories: Dict, commit_d
         wd_names = [FM.t(week_day) for week_day in WEEK_DAY_NAMES]
         wd_texts = [f"{week_day} commits" for week_day in week_days]
         wd_percents = [0 if sum_week == 0 else round((week_day / sum_week) * 100, 2) for week_day in week_days]
-        title = FM.t("I am Most Productive on") % wd_names[wd_percents.index(max(wd_percents))]
+        title = FM.t("I am Most Productive on")
         stats += f"📅 **{title}** \n\n```text\n{make_list(names=wd_names, texts=wd_texts, percents=wd_percents, top_num=7, sort=False)}\n```\n"
 
     return stats
