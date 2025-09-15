@@ -5,6 +5,7 @@ from asyncio import run
 from datetime import datetime
 from typing import Dict
 from urllib.parse import quote
+from time import sleep
 
 from humanize import intword, naturalsize, intcomma
 
@@ -30,6 +31,9 @@ async def get_waka_time_stats(repositories: Dict, commit_dates: Dict) -> str:
     DBM.i("Adding short WakaTime stats...")
     stats = str()
 
+    await DM.get_remote_json("waka_latest") # Preload `waka_latest`
+    sleep(3)
+    
     data = await DM.get_remote_json("waka_latest")
     if data is None:
         DBM.p("WakaTime data unavailable!")
