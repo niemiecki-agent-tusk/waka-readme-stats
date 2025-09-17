@@ -1,10 +1,12 @@
 """
 Readme Development Metrics With waka time progress
 """
+
 from asyncio import run
 from datetime import datetime
 from typing import Dict
 from urllib.parse import quote
+from urllib.request import urlopen
 from time import sleep
 
 from humanize import intword, naturalsize, intcomma
@@ -31,7 +33,13 @@ async def get_waka_time_stats(repositories: Dict, commit_dates: Dict) -> str:
     DBM.i("Adding short WakaTime stats...")
     stats = str()
 
-    await DM.get_remote_json("waka_latest")  # Preload `waka_latest`
+    # Preload `waka_latest`
+    try:
+        with urlopen(f"https://wakatime.com/api/v1/users/current/stats/last_7_days?api_key={EM.WAKATIME_API_KEY}") as response:
+            pass
+    except Exception as exception:
+        print(f"Preload Failed: {exception}")
+
     sleep(5)
     
     data = await DM.get_remote_json("waka_latest")
