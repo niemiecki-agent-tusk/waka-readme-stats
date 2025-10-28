@@ -77,7 +77,7 @@ async def get_waka_time_stats(repositories: Dict, commit_dates: Dict) -> str:
         if EM.SHOW_OS:
             DBM.i("Adding user operating systems info...")
             os_list = no_activity if len(data["data"]["operating_systems"]) == 0 else make_list(data["data"]["operating_systems"])
-            stats += f"💻 {FM.t('operating system')}: \n{os_list.replace("Mac", "macOS")}\n\n"
+            stats += f"💻 {FM.t('operating system')}: \n{os_list.replace('Mac', 'macOS')}\n\n"
 
         stats = f"{stats[:-1]}```\n\n"
 
